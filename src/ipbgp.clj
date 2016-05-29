@@ -24,8 +24,7 @@
     (do
       (.writeUTF out msg)
       (.flush out)
-      (let [res (slurp in)]
-        res))))
+      (slurp in))))
 
 (defn- wrap-ips
   "Wrap a list of ip-addresses in a string suitable
