@@ -45,8 +45,9 @@
   split IP-BGP elements."
   [res]
   (let [result (rest res)
+        query (first res)
         peers (split (first result) #"\s+")]
-    (cons peers (rest result))))
+    (cons peers (cons query (rest result)))))
 
 (defn parse-ans-line
   "Parses a single line of the result from the Shadowserver IP-BGP bulk query
@@ -55,7 +56,7 @@
   kind may be either :peer or :origin."
   [kind l]
   (let [res (split l #"\s*\|\s*")
-        header '(:asn :prefix :asname :cn :domain :isp)]
+        header '(:query :asn :prefix :asname :cn :domain :isp)]
     (case kind
       :origin (zipmap header res)
       :peer (->> res
