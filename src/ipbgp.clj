@@ -1,6 +1,6 @@
 (ns ipbgp
   (:use [clojure.string :only (trim join split)])
-  (:import (java.net Socket) (java.io DataInputStream DataOutputStream BufferedInputStream BufferedOutputStream)))
+  (:import (java.net Socket) (java.io DataInputStream DataOutputStream)))
 
 ;; Copyright © 2016 Geir Skjotsift <geir@pogostick.net>
 ;;
