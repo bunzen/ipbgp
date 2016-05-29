@@ -27,9 +27,8 @@
       (slurp in))))
 
 (defn- wrap-ips
-  "Wrap a list of ip-addresses in a string suitable
-  for use with the Shadowserver IP-BGP bulk API.
-  The argument are a kind and a list of IPs'
+  "Wrap a list of ip-addresses in a string suitable for use with the
+  Shadowserver IP-BGP bulk API.  The argument are a kind and a list of IPs'
 
   kind may be either :peer or :origin.
   ips is a list of IP addresses represented as strings."
@@ -41,8 +40,8 @@
        (join "\n" ips) "\nend\n"))
 
 (defn- split-peers
-  "The first element of the Shadowserver IP-BGP peers query is a
-  space separeted list of peers. The argument res is a list of
+  "The first element of the Shadowserver IP-BGP peers result is the query, the
+  second is a space separeted list of peers. The argument res is a list of
   split IP-BGP elements."
   [res]
   (let [result (rest res)
@@ -50,9 +49,8 @@
     (cons peers (rest result))))
 
 (defn parse-ans-line
-  "Parses a single line of the result from the
-  Shadowserver IP-BGP bulk query API. The arguments
-  are kind and a line of results.
+  "Parses a single line of the result from the Shadowserver IP-BGP bulk query
+  API. The arguments are kind and a line of results.
 
   kind may be either :peer or :origin."
   [kind l]
@@ -71,8 +69,8 @@
     (map (partial parse-ans-line t) lines)))
 
 (defmulti ip->asn
-  "Dispatch function that allows for ip->asn to be called both with
-  a single element as a string or a list of strings.
+  "Dispatch function that allows for ip->asn to be called both with a single
+  element as a string or a list of strings.
 
   t -> :peer, :origin
   a -> string or list of strings representing IP addresses."
