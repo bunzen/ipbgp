@@ -2,7 +2,7 @@
   :description "Library for interaction with the Shadowserver IP-BGP service"
   :url ""
   :license {:name "BSD 2-Clause"
-            :url "http://www.eclipse.org/legal/epl-v10.html"}
+            :url "https://opensource.org/licenses/BSD-2-Clause"}
   :dependencies [[org.clojure/clojure "1.8.0"]]
   :deploy-repositories [["releases" :clojars]
                         ["snapshots" :clojars]])
