@@ -16,11 +16,11 @@
 (def port 43)
 
 (defn- com [host port msg]
-  (let [s (Socket. host port)
-        in (-> (.getInputStream s)
-               DataInputStream.)
-        out (-> (.getOutputStream s)
-                DataOutputStream.)]
+  (with-open [s (Socket. host port)
+              in (-> (.getInputStream s)
+                     DataInputStream.)
+              out (-> (.getOutputStream s)
+                      DataOutputStream.)]
     (do
       (.writeUTF out msg)
       (.flush out)
@@ -69,22 +69,15 @@
         lines (split res #"\n")]
     (map (partial parse-ans-line t) lines)))
 
-(defmulti ip->asn
-  "Dispatch function that allows for ip->asn to be called both with a single
-  element as a string or a list of strings.
+(defn ip->asn
+  "Lookup IP or list of IPs' against the Shadowserver IP-BGP service.
 
   t -> :peer, :origin
   a -> string or list of strings representing IP addresses."
-  {:arglists '(t a)}
-  (fn [t a] (seq? a)))
-
-(defmethod ip->asn true
   [t a]
-  (bulk-query t a))
-
-(defmethod ip->asn false
-  [t a]
-  (bulk-query t `(~a)))
+  (if (seq? a)
+    (bulk-query t a)
+    (bulk-query t `(~a))))
 
 (defn asn->prefix
   "Lookup all prefixes associated to the ASN via the
