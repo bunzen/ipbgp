@@ -4,7 +4,7 @@ A clojure library designed to work with the Shadowserver IP-BGP service API.
 
 ## Usage
 
-Add [ipbgp "0.2.0"] to :dependencies in your lein project.clj
+Add [ipbgp "0.3.0"] to :dependencies in your lein project.clj
 
 ```clojure
 => (require 'ipbgp)
