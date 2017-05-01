@@ -1,4 +1,4 @@
-(defproject ipbgp "0.2.0"
+(defproject ipbgp "0.3.0"
   :description "Library for interaction with the Shadowserver IP-BGP service"
   :url ""
   :license {:name "BSD 2-Clause"

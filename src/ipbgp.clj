@@ -2,7 +2,7 @@
   (:use [clojure.string :only (trim join split)])
   (:import (java.net Socket) (java.io DataInputStream DataOutputStream)))
 
-;; Copyright © 2016 Geir Skjotsift <geir@pogostick.net>
+;; Copyright © 2016, 2017 Geir Skjotsift <geir@pogostick.net>
 ;;
 ;; Distributed under the 2-Clause BSD License
 ;;
@@ -56,7 +56,7 @@
   kind may be either :peer or :origin."
   [kind l]
   (let [res (split l #"\s*\|\s*")
-        header '(:query :asn :prefix :asname :cn :domain :isp)]
+        header '(:query :asn :prefix :asname :cn :isp)]
     (case kind
       :origin (zipmap header res)
       :peer (->> res

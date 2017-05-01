@@ -9,10 +9,11 @@ Add [ipbgp "0.2.0"] to :dependencies in your lein project.clj
 ```clojure
 => (require 'ipbgp)
 nil
-
-=> (ipbgp/ip->asn :origin '("44.55.66.77" "77.66.55.44"))
-({:query "44.55.66.77", :asn "7377", :prefix "44.0.0.0/8", :asname "UCSD", :cn "US", :domain "ampr.org", :isp "Amateur Radio Digital Communications"} {:query "77.66.55.44", :asn "16245", :prefix "77.66.0.0/17", :asname "NGDC", :cn "DK", :domain "netgroup.dk", :isp "Netgroup A/S"})
-
+user=> (ipbgp/ip->asn :origin ["44.55.66.77"])
+({:query "44.55.66.77", :asn "7377", :prefix "44.0.0.0/8", :asname "UCSD", :cn "US", :isp "University of California, San Diego, US"})
+user=> (ipbgp/ip->asn :origin '("44.55.66.77" "77.66.55.44"))
+({:query "44.55.66.77", :asn "7377", :prefix "44.0.0.0/8", :asname "UCSD", :cn "US", :isp "University of California, San Diego, US"} {:query "77.66.55.44", :asn "16245", :prefix "77.66.0.0/17", :asname "NGDC,", :cn "DK", :isp "DK"})
+user=>
 => (def pinfo (ipbgp/ip->asn :peer '("44.55.66.77" "77.66.55.44")))
 => (:peers (first pinfo))
 ["2152"]
@@ -24,6 +25,6 @@ nil
 
 ## License
 
-Copyright © 2016 Geir Skjotskift <geir@pogostick.net>
+Copyright © 2016,2017 Geir Skjotskift <geir@pogostick.net>
 
 Distributed under the 2-Clause BSD License
